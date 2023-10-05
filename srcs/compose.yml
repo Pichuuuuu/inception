@@ -1,4 +1,4 @@
-version: "lol"
+version: "rip"
 
 services:
   nginx:
@@ -68,17 +68,17 @@ services:
 
 volumes:
   db:
-#    driver: local
-#    driver_opts:
-#      o: bind
-#      type: none
-#      device: /home/tamather/data/db
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: /home/tamather/data/db
   wp:
-#    driver: local
-#    driver_opts:
-#      o: bind
-#      type: none
-#      device: /home/tamather/data/wp
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: /home/tamather/data/wp
 
 networks:
   inception:
