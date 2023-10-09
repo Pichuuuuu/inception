@@ -1,5 +1,7 @@
 CPATH = srcs/compose.yml
 
+COMPOSE = docker compose
+
 all: up
 
 re: rebuild up
@@ -10,37 +12,37 @@ mkdatadir:
 	mkdir -p /home/tamather/data/wp
 
 build: mkdatadir
-	docker-compose -f $(CPATH) build
+	$(COMPOS)E -f $(CPATH) build
 
 up: mkdatadir
-	docker-compose -f $(CPATH) up -d
+	$(COMPOSE) -f $(CPATH) up -d
 
 down:
-	docker-compose -f $(CPATH) down
+	$(COMPOSE) -f $(CPATH) down
 
 clean:
-	docker-compose -f $(CPATH) down -v --rmi all --remove-orphans
+	$(COMPOSE) -f $(CPATH) down -v --rmi all --remove-orphans
 	rm -rf /home/tamather/data
 	rm -rf /home/tamather/data/db
 	rm -rf /home/tamather/data/wp
 
 logs:
-	docker-compose -f $(CPATH) logs
+	$(COMPOSE) -f $(CPATH) logs
 
 ps:
-	docker-compose -f $(CPATH) ps
+	$(COMPOSE) -f $(CPATH) ps
 
 stop:
-	docker-compose -f $(CPATH) stop
+	$(COMPOSE) -f $(CPATH) stop
 
 start:
-	docker-compose -f $(CPATH) start
+	$(COMPOSE) -f $(CPATH) start
 
 restart:
-	docker-compose -f $(CPATH) restart
+	$(COMPOSE) -f $(CPATH) restart
 
 rebuild: clean mkdatadir
-	docker-compose -f $(CPATH) build --no-cache
+	$(COMPOSE) -f $(CPATH) build --no-cache
 
 prune:
 	docker system prune -a

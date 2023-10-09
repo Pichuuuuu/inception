@@ -2,6 +2,7 @@ version: "rip"
 
 services:
   nginx:
+    init: true
     container_name: nginx
     image: nginx_img
     build:
@@ -20,6 +21,7 @@ services:
     restart: always
 
   mariadb:
+    init: true
     container_name: mariadb
     image: mariadb_img
     env_file:
@@ -39,6 +41,7 @@ services:
     restart: always
 
   wordpress:
+    init: true
     container_name: wordpress
     image: wordpress_img
     build:
