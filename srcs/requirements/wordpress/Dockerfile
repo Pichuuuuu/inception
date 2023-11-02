@@ -23,7 +23,6 @@ RUN apt-get install -y wget
 RUN sed -i 's/listen = \/run\/php\/php7.3-fpm.sock/listen = 9000/g' /etc/php/7.3/fpm/pool.d/www.conf
 RUN mkdir /run/php
 
-# install and configure wordpress
 WORKDIR /tmp
 RUN wget -O wp-cli.phar https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
 RUN chmod +x wp-cli.phar
@@ -40,12 +39,8 @@ RUN wp core config  --dbhost=mariadb \
                     --allow-root
 RUN chmod 600 wp-config.php
 
-# set permission and ownership
-
 RUN chown -R www-data:www-data /var/www/wordpress
 RUN chmod -R 755 /var/www/wordpress
-
-#entry point
 
 CMD ["/bin/bash", "-c", "/usr/local/bin/wp core install --path=/var/www/wordpress\
                     --url=${WP_URL} \
